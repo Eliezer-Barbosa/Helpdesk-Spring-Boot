@@ -6,6 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 public class User {
 	
@@ -15,15 +19,21 @@ public class User {
 	private Long id;
 	
 	@Column
+	@Email(message = "Please provide a valid email")
+	@NotEmpty(message = "Can not be empty")
 	private String email;
 	
 	@Column
+	@NotEmpty(message = "Can not be empty")
 	private String name;
 	
 	@Column
+	@NotEmpty(message = "Can not be empty")
 	private String lastName;
 	
 	@Column
+	@NotEmpty(message = "Can not be empty")
+	@Length(min = 5, message = "You need to provide a password that contains at least 5 characters")
 	private String password;
 	
 	@Column
