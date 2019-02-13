@@ -1,5 +1,12 @@
 package com.schoolofnet.Helpdesk.services;
 
-public class RoleService {
+import java.util.List;
+
+import com.schoolofnet.Helpdesk.models.Role;
+
+public interface RoleService {
+	
+	public List<Role> findAll();
+	public Role create(Role role);
 
 }
