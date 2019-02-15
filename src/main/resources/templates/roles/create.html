@@ -4,22 +4,13 @@
 	xmlns:layout = "http://ultraq.net.nz/thymeleaf/layout/"
 	layout:decorator = "layout">
 	
-	<!-- table fragment -->
+	<!-- form fragment -->
 	<th:block layout:fragment = "content">
-		<table class="table table-bordered">
-			<thead>
-				<tr>
-					<th>Id</th>
-					<th>Role</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>1</td>
-					<td>Manager</td>
-				</tr>
-			</tbody>
-		</table>
+		<form action="">
+			<div class="form-group">
+				<input type="text" name = "role" placeholder="Enter role name:" class="form-control" />
+			</div>
+		</form>
 	</th:block>
 
 </html>

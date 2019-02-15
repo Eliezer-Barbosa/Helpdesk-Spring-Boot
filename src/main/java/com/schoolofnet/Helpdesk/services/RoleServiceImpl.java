@@ -23,7 +23,8 @@ public class RoleServiceImpl implements RoleService {
 
 	@Override
 	public Role create(Role role) {
-		return null;
+		Role roleCreated = this.repository.save(role);
+		return roleCreated;
 	}
 
 }
