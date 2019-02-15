@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.schoolofnet.Helpdesk.models.Role;
+
 @Controller
 @RequestMapping("/roles")
 public class RoleController {
@@ -18,6 +20,7 @@ public class RoleController {
 	
 	@GetMapping("/new")
 	public String create(Model model) {
+		model.addAttribute("role", new Role());
 		return "roles/create";
 	}
 	
