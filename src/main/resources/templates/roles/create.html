@@ -6,7 +6,7 @@
 	
 	<!-- form fragment -->
 	<th:block layout:fragment = "content">
-		<form action="">
+		<form action="" th:action = "@{/roles}" th:object = "${role}" th:method = "post">
 			<div class="form-group">
 				<input type="text" name = "role" placeholder="Enter role name:" class="form-control" />
 			</div>
