@@ -42,7 +42,10 @@ public class RoleController {
 		if(bindingResult.hasErrors()) {
 			return "redirect:/roles/new";
 		}
-		return null;
+		
+		Role roleCreated = this.roleService.create(role);
+		
+		return "redirect:/roles";
 	}
 	
 	@DeleteMapping
