@@ -10,13 +10,19 @@
 			<thead>
 				<tr>
 					<th>Id</th>
-					<th>Role</th>
+					<th>Role name</th>
+					<th>Actions</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>1</td>
-					<td>Manager</td>
+				<tr th:each="role : ${list}">
+					<td th:text="${role.id}"></td>
+					<td th:text="${role.name}"></td>
+					<td>
+						<form action="">
+							<button class="btn btn-danger">Delete</button>
+						</form>
+					</td>
 				</tr>
 			</tbody>
 		</table>
