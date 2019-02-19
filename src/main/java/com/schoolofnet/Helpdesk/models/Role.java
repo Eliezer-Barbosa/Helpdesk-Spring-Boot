@@ -10,44 +10,43 @@ import javax.persistence.Table;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@Table(name = "roles")
+@Table( name = "roles")
 public class Role {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column
-	private Long id;
-	
-	@Column
-	@NotEmpty(message = "Can not be empty")
-	private String role;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    @Column
+    @NotEmpty(message = "Can not be empty")    
+    private String name;
 
-	public Role() {
-		
-	}
-	
-	public Role(String role) {
-		this.role = role;
-	}
-	
-	public Role(Long id, String role) {
-		this.id = id;
-		this.role = role;
-	}
-	
-	public Long getId() {
-		return id;
-	}
+    public Role() {
+        
+    }
+    
+    public Role(String name) {
+        this.name = name;
+    }
+    
+    public Role(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+    
+    public Long getId() {
+        return id; 
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getRole() {
-		return role;
-	}
+    public String getName() {
+        return name;
+    } 
 
-	public void setRole(String role) {
-		this.role = role;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 }
