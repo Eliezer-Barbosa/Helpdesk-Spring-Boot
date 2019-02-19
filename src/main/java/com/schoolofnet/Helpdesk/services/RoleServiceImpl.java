@@ -20,11 +20,12 @@ public class RoleServiceImpl implements RoleService {
 
 	@Override
 	public List<Role> findAll() {
-		return null;
+		return this.repository.findAll();
 	}
 
 	@Override
 	public Role create(Role role) {
+		role.setName(role.getName().toUpperCase());
 		Role roleCreated = this.repository.save(role);
 		return roleCreated;
 	}
