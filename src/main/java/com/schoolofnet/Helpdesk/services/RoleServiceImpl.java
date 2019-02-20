@@ -30,4 +30,20 @@ public class RoleServiceImpl implements RoleService {
 		return roleCreated;
 	}
 
+	@Override
+	public Boolean delete(Long id) {
+		Role role = findById(id);
+		
+		if(role != null) {
+			this.repository.delete(role);
+			return true;
+		}
+		
+		return false;
+	}
+	
+	private Role findById(Long id) {
+		return this.repository.findOne(id);
+	}
+
 }
