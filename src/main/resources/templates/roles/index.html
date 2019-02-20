@@ -6,7 +6,11 @@
 	
 	<!-- table fragment -->
 	<th:block layout:fragment = "content">
-		<table class="table table-bordered">
+		<div class="col-xs-12 col-md=12">
+			<a href="/roles/new" class="btn btn-success">Create</a>
+		</div>
+		<div class="col-xs-12 col-md-12">
+			<table class="table table-bordered">
 			<thead>
 				<tr>
 					<th>Id</th>
@@ -19,13 +23,14 @@
 					<td th:text="${role.id}"></td>
 					<td th:text="${role.name}"></td>
 					<td>
-						<form action="">
+						<form th:action="@{/roles/{id}(id = ${role.id})}" th:method="delete">
 							<button class="btn btn-danger">Delete</button>
 						</form>
 					</td>
 				</tr>
 			</tbody>
 		</table>
+		</div>
 	</th:block>
 
 </html>
