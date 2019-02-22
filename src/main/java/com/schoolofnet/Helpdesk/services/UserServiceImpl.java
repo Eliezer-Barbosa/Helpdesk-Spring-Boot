@@ -41,6 +41,16 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Boolean update(Long id, User user) {
+		User userExists = findById(id);
+		
+		if (userExists != null) {
+			userExists.setId(user.getId());
+			userExists.setName(user.getName());
+			userExists.setLastName(user.getLastName());
+			userExists.setEmail(user.getEmail());
+			userExists.setPassword(user.getPassword());
+			userExists.setActive(user.getActive());
+		}
 		return null;
 	}
 	
