@@ -39,8 +39,11 @@ public class UserController {
 		return "users/create";
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/edit/{id}")
 	public String edit(@PathVariable("id") Long id, Model model) {
+		User user = this.userService.show(id);
+		
+		model.addAttribute("user", user);
 		return "users/edit";
 	}
 	

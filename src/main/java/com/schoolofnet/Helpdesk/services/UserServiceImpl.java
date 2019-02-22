@@ -48,4 +48,9 @@ public class UserServiceImpl implements UserService {
 		return this.repository.findOne(id);
 	}
 
+	@Override
+	public User show(Long id) {
+		return findById(id);
+	}
+
 }
