@@ -32,7 +32,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/new")
-	public String create(@Valid @ModelAttribute("user") Model model) {
+	public String create(Model model) {
 		model.addAttribute("user", new User());
 		return "users/create";
 	}
