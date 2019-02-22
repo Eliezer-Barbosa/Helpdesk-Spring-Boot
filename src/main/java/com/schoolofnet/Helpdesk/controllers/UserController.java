@@ -1,16 +1,30 @@
 package com.schoolofnet.Helpdesk.controllers;
 
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.schoolofnet.Helpdesk.models.User;
+import com.schoolofnet.Helpdesk.services.UserService;
 
 @Controller
 @RequestMapping("/users")
 public class UserController {
+	
+	@Autowired
+	private UserService userService;
+	
+	public UserController(UserService userService) {
+		this.userService = userService;
+	}
 	
 	@GetMapping
 	public String index(Model model) {
@@ -18,7 +32,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/new")
-	public String create(Model model) {
+	public String create(@Valid @ModelAttribute("user") Model model) {
 		model.addAttribute("user", new User());
 		return "users/create";
 	}
@@ -26,6 +40,16 @@ public class UserController {
 	@GetMapping("/{id}")
 	public String edit(@PathVariable("id") Long id, Model model) {
 		return "users/edit";
+	}
+	
+	@PostMapping
+	public String save(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			return "users/create";
+		}
+		
+		this.userService.create(user);
+		return "redirect:/users";
 	}
 
 }
