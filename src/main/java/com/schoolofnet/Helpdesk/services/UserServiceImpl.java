@@ -30,12 +30,22 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Boolean delete(Long id) {
-		return null;
+		User user = findById(id);
+		
+		if(user != null) {
+			this.repository.delete(user);
+			return true;
+		}
+		return false;
 	}
 
 	@Override
 	public Boolean update(Long id, User user) {
 		return null;
+	}
+	
+	private User findById(Long id) {
+		return this.repository.findOne(id);
 	}
 
 }
