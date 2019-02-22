@@ -50,8 +50,13 @@ public class UserServiceImpl implements UserService {
 			userExists.setEmail(user.getEmail());
 			userExists.setPassword(user.getPassword());
 			userExists.setActive(user.getActive());
+			
+			this.repository.save(userExists);
+			
+			return true;
 		}
-		return null;
+		
+		return false;
 	}
 	
 	private User findById(Long id) {
