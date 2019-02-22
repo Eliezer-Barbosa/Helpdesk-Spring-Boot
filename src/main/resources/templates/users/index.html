@@ -20,6 +20,11 @@
 					<td th:text="${user.name}"></td>
 					<td th:text="${user.lastName}"></td>
 					<td th:text="${user.email}"></td>
+					<td>
+						<form th:action="@{/users/{id}(id = ${user.id})}" th:method="delete">
+							<button type="submit" class="btn btn-danger">Delete</button>
+						</form>
+					</td>
 				</tr>
 			</tbody>
 		</table>
