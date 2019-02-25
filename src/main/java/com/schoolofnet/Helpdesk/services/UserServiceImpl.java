@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.schoolofnet.Helpdesk.models.Role;
 import com.schoolofnet.Helpdesk.models.User;
 import com.schoolofnet.Helpdesk.repositories.RoleRepository;
 import com.schoolofnet.Helpdesk.repositories.UserRepository;
@@ -36,6 +37,8 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User create(User user) {
 		user.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));
+		
+		Role userRole = this.roleRepository.findByName("USER");
 		return this.repository.save(user);
 	}
 
