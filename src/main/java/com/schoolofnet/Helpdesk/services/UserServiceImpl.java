@@ -1,5 +1,7 @@
 package com.schoolofnet.Helpdesk.services;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +41,9 @@ public class UserServiceImpl implements UserService {
 		user.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));
 		
 		Role userRole = this.roleRepository.findByName("USER");
+		
+		user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+		
 		return this.repository.save(user);
 	}
 
