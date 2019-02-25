@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.schoolofnet.Helpdesk.models.User;
+import com.schoolofnet.Helpdesk.repositories.RoleRepository;
 import com.schoolofnet.Helpdesk.repositories.UserRepository;
 
 @Service
@@ -16,11 +17,15 @@ public class UserServiceImpl implements UserService {
 	private UserRepository repository;
 	
 	@Autowired
+	private RoleRepository roleRepository;
+	
+	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
-	public UserServiceImpl(UserRepository repository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+	public UserServiceImpl(UserRepository repository, BCryptPasswordEncoder bCryptPasswordEncoder, RoleRepository roleRepository) {
 		this.repository = repository;
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+		this.roleRepository = roleRepository;
 	}
 
 	@Override
