@@ -13,6 +13,12 @@
 				</div>	
 				<div class="form-group">
 					<input type="password" id="password" name="password" placeholder="Enter user password:" class="form-control" />
+				</div>
+				<!-- This message will be displayed only if there is error with authentication -->
+				<div class="text-center">
+					<span class="text-danger" th:if="${param.errors}">
+						Email or password invalid. Please try again.
+					</span>
 				</div>			
 				<div class="form-group">
 					<button type="submit" class="btn btn-primary">Login</button>
