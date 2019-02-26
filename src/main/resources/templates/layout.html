@@ -10,10 +10,9 @@
 	<link rel = "stylesheet" th:href = "@{/css/app.css}" />
 </head>
 <body>
-	
-	<!-- will display the header only when the user is authenticated -->
-	<div sec:authorize="isAuthenticated()">
-		<!-- header fragment -->
+
+	<!-- header fragment -->
+	<div>
 		<th:block layout:replace = "fragments/header"></th:block>
 	</div>
 
