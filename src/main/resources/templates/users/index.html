@@ -28,8 +28,8 @@
 						<td th:text="${user.email}"></td>
 						<td th:text="${user.active}"></td>
 						<td>
-							<a th:href="@{/users/edit/{id}(id = ${user.id})}" class="btn btn-info">Edit</a>
-							<form th:action="@{/users/{id}(id = ${user.id})}" th:method="delete">
+							<a th:href="@{/users/edit/{id}(id = ${user.id})}" class="btn btn-info inline">Edit</a>
+							<form th:action="@{/users/{id}(id = ${user.id})}" th:method="delete" class="inline">
 								<button type="submit" class="btn btn-danger">Delete</button>
 							</form>
 						</td>
