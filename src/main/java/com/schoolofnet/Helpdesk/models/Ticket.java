@@ -26,13 +26,13 @@ public class Ticket {
 	
 	@Column
     @NotEmpty(message = "Can not be empty")    	
-	private String name;
+	private String name;  
 	
 	@Column
     @NotEmpty(message = "Can not be empty")    	
 	private String description;
 	
-	@Column  	
+	@Column
 	private Date created;
 	
 	@Column
