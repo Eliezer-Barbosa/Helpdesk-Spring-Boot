@@ -91,4 +91,9 @@ public class UserServiceImpl implements UserService {
 		return findById(id);
 	}
 
+	@Override
+	public List<User> findAllWhereRoleEquals(Long role_id) {
+		return this.repository.findAllWhereRoleEquals(role_id);
+	}
+
 }
