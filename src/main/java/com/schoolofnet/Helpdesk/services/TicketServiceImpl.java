@@ -69,7 +69,7 @@ public class TicketServiceImpl implements TicketService {
 
 	@Override
 	public Ticket show(Long id) {
-		return null;
+		return this.ticketRepository.findOne(id);
 	}
 
 	@Override
