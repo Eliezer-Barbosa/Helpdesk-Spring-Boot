@@ -7,55 +7,62 @@
 	<!-- form fragment -->
 	<th:block layout:fragment = "content">
 		<div class="col-xs-12 col-md-12 text-center">
-			<h4>Edit a user</h4>
-			<input type="hidden" th:field="*{id}" />
-			<form action="" th:action = "@{/users/{id}(id = ${user.id})}" th:object = "${user}" th:method = "put">
-				<!-- div row with fields name and last name -->
-				<div class="row">
-					<div class="form-group col-md-6 col-xs-12">
-						<input type="text" th:field="*{name}" name="name" placeholder="Enter user name:" class="form-control" />
-						<span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">User name Error</span>
-					</div>
-				
-					<div class="form-group col-md-6 col-xs-12">
-						<input type="text" th:field="*{lastName}" name="lastName" placeholder="Enter user last name" class="form-control" />
-						<span class="text-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">User last name Error</span>
-					</div>
+			<div class="card">
+				<div class="card-header">
+					Edit user - <span th:text="${user.name}"></span>
 				</div>
-				
-				<div class="form-group">
-					<input type="email" th:field="*{email}" name="email" placeholder="Enter user email" class="form-control" />
-					<span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">User email Error</span>
+				<div class="card-block">
+					<form action="" th:action = "@{/users/{id}(id = ${user.id})}" th:object = "${user}" th:method = "put">
+						<input type="hidden" th:field="*{id}" />
+						<!-- div row with fields name and last name -->
+						<div class="row">
+							<div class="form-group col-md-6 col-xs-12">
+								<input type="text" th:field="*{name}" name="name" placeholder="Enter user name:" class="form-control" />
+								<span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">User name Error</span>
+							</div>
+						
+							<div class="form-group col-md-6 col-xs-12">
+								<input type="text" th:field="*{lastName}" name="lastName" placeholder="Enter user last name" class="form-control" />
+								<span class="text-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">User last name Error</span>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<input type="email" th:field="*{email}" name="email" placeholder="Enter user email" class="form-control" />
+							<span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">User email Error</span>
+						</div>
+						
+						<div class="form-group">
+							<input type="password" th:field="*{password}" name="password" placeholder="Enter user password" class="form-control" />
+							<span class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">User password Error</span>
+						</div>
+						
+						<div class="form-group">
+							<select th:field="*{roles}" class="custom-select">
+								<option th:each="role : ${roles}"
+									th:value="${role.id}"
+									th:text="${role.name}"
+									th:selected="${role.id == user.roles[0].id}">
+								</option>
+							</select>
+						</div>
+						
+						<div class="form-group">
+							<label class="custom-control custom-checkbox">
+								<input type="checkbox" th:field="*{active}" class="custom-control-input" />
+								<span class="custom-control-indicator"></span>
+								<span class="custom-control-description">Active?</span>
+							</label>
+						</div>
+						
+						
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary">Save</button>
+							<a href="/users" class="btn btn-secondary">Back</a>
+						</div>
+					</form>
 				</div>
-				
-				<div class="form-group">
-					<input type="password" th:field="*{password}" name="password" placeholder="Enter user password" class="form-control" />
-					<span class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">User password Error</span>
-				</div>
-				
-				<div class="form-group">
-					<select th:field="*{roles}" class="custom-select">
-						<option th:each="role : ${roles}"
-							th:value="${role.id}"
-							th:text="${role.name}"
-							th:selected="${role.id == user.roles[0].id}">
-						</option>
-					</select>
-				</div>
-				
-				<div class="form-group">
-					<label class="custom-control custom-checkbox">
-						<input type="checkbox" th:field="*{active}" class="custom-control-input" />
-						<span class="custom-control-indicator"></span>
-						<span class="custom-control-description">Active?</span>
-					</label>
-				</div>
-				
-				
-				<div class="form-group">
-					<button type="submit" class="btn btn-primary">Save</button>
-				</div>
-			</form>
+			</div>
 		</div>
 	</th:block>
 
