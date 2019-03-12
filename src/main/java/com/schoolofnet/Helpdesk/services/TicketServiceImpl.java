@@ -60,7 +60,13 @@ public class TicketServiceImpl implements TicketService {
 
 	@Override
 	public Boolean delete(Long id) {
-		return null;
+		Ticket ticket = findById(id);
+		
+		if(ticket != null) {
+			this.ticketRepository.delete(ticket);
+			return true;
+		}
+		return false;
 	}
 
 	@Override
