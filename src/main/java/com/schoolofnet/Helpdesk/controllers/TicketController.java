@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.schoolofnet.Helpdesk.models.Ticket;
@@ -34,9 +35,19 @@ public class TicketController {
 		return "ticket/show";
 	}
 	
+	@GetMapping("/edit/{id}")
+	public String edit(@PathVariable("id") Long id, Model model) {
+		model = this.ticketService.findAllTechnician(model);
+		model.addAttribute("ticket", this.ticketService.show(id));
+		
+		return "ticket/edit";
+	}
+	
 	@GetMapping("/new")
 	public String create(Model model) {
-		model = this.ticketService.createTemplate(model);
+		model = this.ticketService.findAllTechnician(model);
+		model.addAttribute("ticket", new Ticket());
+		
 		return "ticket/create";
 	}
 	
@@ -47,6 +58,17 @@ public class TicketController {
 		}
 		
 		this.ticketService.create(ticket);
+		return "redirect:/tickets";
+	}
+	
+	@PutMapping("{id}")
+	public String update(@PathVariable("id") Long id, @Valid @ModelAttribute("ticket") Ticket ticket, BindingResult bindingResult, Model model) {
+		if(bindingResult.hasErrors()) {
+			return "ticket/edit";
+		}
+		
+		this.ticketService.update(id, ticket);
+		
 		return "redirect:/tickets";
 	}
 

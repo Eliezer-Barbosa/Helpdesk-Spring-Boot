@@ -9,7 +9,7 @@ import com.schoolofnet.Helpdesk.models.Ticket;
 public interface TicketService {
 	
 	public List<Ticket> findAll();
-	public Model createTemplate(Model model);
+	public Model findAllTechnician(Model model);
 	public Ticket create(Ticket ticket);
 	public Boolean delete(Long id);
 	public Boolean update(Long id, Ticket ticket);

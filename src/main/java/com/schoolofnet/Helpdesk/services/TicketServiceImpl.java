@@ -1,5 +1,6 @@
 package com.schoolofnet.Helpdesk.services;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,7 +65,24 @@ public class TicketServiceImpl implements TicketService {
 
 	@Override
 	public Boolean update(Long id, Ticket ticket) {
-		return null;
+		Ticket ticketExist = findById(id);
+		
+		if(ticketExist != null) {
+		   ticketExist.setId(ticket.getId());
+		   ticketExist.setName(ticket.getName());
+		   ticketExist.setDescription(ticket.getDescription());
+		   ticketExist.setFinished(ticket.getFinished());
+		   ticketExist.setTechnician(ticket.getTechnician());
+		   
+		   if(ticket.getFinished()) {
+			   ticketExist.setClosed(new Date());
+		   }
+		   
+		   this.ticketRepository.save(ticketExist);
+		   
+		   return true;
+		}
+		return false;
 	}
 
 	@Override
@@ -73,8 +91,7 @@ public class TicketServiceImpl implements TicketService {
 	}
 
 	@Override
-	public Model createTemplate(Model model) {
-		model.addAttribute("ticket", new Ticket());
+	public Model findAllTechnician(Model model) {
 		
 		Role adminRole = this.roleService.findByName(ROLE_NAME);
 		
@@ -88,6 +105,10 @@ public class TicketServiceImpl implements TicketService {
 		model.addAttribute("techs", this.userService.findAllWhereRoleEquals(adminRole.getId(), userLogged.getId()));
 		
 		return model;
+	}
+	
+	private Ticket findById(Long id) {
+		return this.ticketRepository.findOne(id);
 	}
 	
 
