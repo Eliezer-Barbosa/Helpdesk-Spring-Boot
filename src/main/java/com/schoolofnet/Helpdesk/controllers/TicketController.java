@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.schoolofnet.Helpdesk.models.Ticket;
 import com.schoolofnet.Helpdesk.services.TicketService;
+import com.schoolofnet.Helpdesk.services.UserService;
 
 @Controller
 @RequestMapping("/tickets")
@@ -24,9 +25,18 @@ public class TicketController {
 	@Autowired
 	private TicketService ticketService;
 	
+	@Autowired
+	private UserService userService;
+	
+	public TicketController(TicketService ticketService, UserService userService) {
+		this.ticketService = ticketService;
+		this.userService = userService;
+	}
+	
 	@GetMapping
 	public String index(Model model) {
 		model.addAttribute("list", this.ticketService.findAll());
+		model.addAttribute("userLoggedIn", this.userService.findCurrentUser());
 		return "ticket/index";
 	}
 	

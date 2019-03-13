@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -94,6 +96,17 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> findAllWhereRoleEquals(Long role_id, Long user_id) {
 		return this.repository.findAllWhereRoleEquals(role_id, user_id);
+	}
+
+	@Override
+	public User findCurrentUser() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		
+		String username = auth.getName();
+		
+		User userLogged = this.repository.findByEmail(username);
+		
+		return userLogged;
 	}
 
 }
