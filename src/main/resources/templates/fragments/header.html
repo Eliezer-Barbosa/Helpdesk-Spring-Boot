@@ -8,16 +8,17 @@
 		<button type="button" class="navbar-toggler navbar-toggler-right" data-toggle="collapse" data-target="navbar">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-		<a href="" class="navbar-brand">Helpdesk</a>
+		<a href="/" class="navbar-brand">Helpdesk</a>
 		
 		<div class="collapse navbar-collapse" id="navbar">
-			<!-- will display the 'li's' only when the user is authenticated -->
+			<!-- will display the 'li's' (users, roles and tickets) only when the user is authenticated -->
 			<ul class="navbar-nav mr-auto" sec:authorize="isAuthenticated()">
 				<li class="nav-item">
-					<a href="/users" class="nav-link">Users</a>
+				<!-- will display the li (users) only if the user is an ADMIN -->
+					<a href="/users" class="nav-link" sec:authorize="hasAuthority('ADMIN')">Users</a>
 				</li>
 				<li class="nav-item">
-					<a href="/roles" class="nav-link">Roles</a>
+					<a href="/roles" class="nav-link" sec:authorize="hasAuthority('ADMIN')">Roles</a>
 				</li>
 				<li class="nav-item">
 					<a href="/tickets" class="nav-link">Tickets</a>
